@@ -8,6 +8,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
+  font-family: sans-serif;
 }
 
 .calc-container {
@@ -25,6 +26,11 @@ body {
   grid-area: 1 / 1 / span 2 / span 4;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  font-size: 30px;
+  padding-right: 12px;
 }
 
 .calc-operator_row {

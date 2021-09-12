@@ -1,3 +1,6 @@
+const displayScreen = document.querySelector('.calc-screen')
+let displayNum
+
 function add(a, b) {
   return a + b
 }
