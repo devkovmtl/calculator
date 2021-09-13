@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: #808080;
+  background-color: rgb(59, 59, 59);
   height: 100%;
   width: 100%;
   display: flex;
@@ -13,28 +13,31 @@ body {
 
 .calc-container {
   margin-top: 24px;
-  border: 1px solid black;
   border-radius: 12px;
   display: grid;
   grid-template-columns: repeat(4, 60px);
   grid-template-rows: repeat(7, 60px);
   grid-gap: 5px;
+  background-color: #fff;
 }
 
 .calc-screen {
-  background-color: cadetblue;
+  /* background-color: cadetblue; */
   grid-area: 1 / 1 / span 2 / span 4;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  font-size: 30px;
-  padding-right: 12px;
+  font-size: 26px;
+  padding-right: 8px;
+  padding-left: 8px;
+  background-color: #020729;
+  color: #fff;
 }
 
 .calc-operator_row {
-  background-color: darkgoldenrod;
+  /* background-color: darkgoldenrod; */
   grid-area: 3 / 1 / span 1 / span 4;
   display: grid;
   grid-template-columns: repeat(4, auto);
@@ -42,7 +45,7 @@ body {
 }
 
 .calc-num {
-  background-color: darkviolet;
+  /* background-color: darkviolet; */
   grid-area: 4 / 1 / span 4 / span 3;
   border-bottom-left-radius: 12px;
   display: grid;
@@ -50,9 +53,34 @@ body {
 }
 
 .calc-operator_col {
-  background-color: fuchsia;
+  /* background-color: fuchsia; */
   grid-area: 4 / 4 / span 4 / span 1;
   border-bottom-right-radius: 12px;
   display: grid;
   grid-template-rows: 1fr 1fr 2fr;
+}
+
+button {
+  height: 50px;
+  width: 50px;
+  align-self: center;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px #0003, 0 2px 2px #00000024, 0 3px 1px -2px #0000001f;
+  border: none;
+  color: #020729;
+  font-size: 19px;
+}
+
+button[data-op='equal'] {
+  height: 90%;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 1px 8px #0003, 0 3px 4px #00000024, 0 3px 3px -2px #0000001f;
+}
+
+button:active {
+  box-shadow: inset 0 7px 9px -7px #000000b3 !important;
 }
