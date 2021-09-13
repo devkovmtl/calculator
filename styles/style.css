@@ -84,3 +84,7 @@ button:hover {
 button:active {
   box-shadow: inset 0 7px 9px -7px #000000b3 !important;
 }
+
+.operand {
+  color: orange;
+}
