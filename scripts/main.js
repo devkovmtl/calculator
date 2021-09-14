@@ -112,6 +112,16 @@ function onCancelBtnClick() {
   displayToScreen(userInput)
 }
 
+function onEqualBtnClick(e) {
+  if (data && data.length) {
+    const currentVal = parseFloat(userInput)
+    data.push(currentVal)
+    const result = evaluate()
+    userInput = result
+    displayToScreen(result)
+  }
+}
+
 /***
  * EVENT LISTENER
  */
@@ -129,3 +139,4 @@ operationBtns.forEach((operationBtn) => {
 })
 
 cancelBtn.addEventListener('click', onCancelBtnClick)
+equalBtn.addEventListener('click', onEqualBtnClick)
