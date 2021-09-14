@@ -16,7 +16,7 @@ const OPERAND = [
 ]
 
 let userInput
-const data = []
+let data = []
 
 function add(a, b) {
   return a + b
@@ -54,8 +54,11 @@ function displayToScreen(str) {
 function onNumericBtnClick(e) {
   let btnValue = e.target.innerText
   if ((!userInput || !userInput.length) && btnValue === '0') {
+    userInput = '0'
+  } else if (userInput === '0') {
     userInput = ''
-  } else if (userInput) {
+    userInput += btnValue
+  } else if (userInput !== '0') {
     userInput += btnValue
   } else {
     userInput = btnValue
@@ -64,18 +67,27 @@ function onNumericBtnClick(e) {
   displayToScreen(userInput)
 }
 
-function onOperandBtnClick(e) {}
+function onOperandBtnClick(e) {
+  // check user UserInput if there is something
+  if (!userInput) {
+    return
+  }
+}
 
 function computeIntermediateStep() {}
 
+/***
+ * EVENT LISTENER
+ */
+// Handle Clear button clean the screen and every variable holding data
 clearBTN.addEventListener('click', clear)
 
+// Handle Numeric button
 numericBtns.forEach((numericBtn) => {
   numericBtn.addEventListener('click', onNumericBtnClick)
 })
 
+// Handle math operation button
 operandBtns.forEach((operandBtn) => {
-  operandBtn.addEventListener('click', (e) => {
-    onOperandBtnClick(e)
-  })
+  operandBtn.addEventListener('click', onOperandBtnClick)
 })
