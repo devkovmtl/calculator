@@ -4,6 +4,7 @@ const operationBtns = document.querySelectorAll('button.operation')
 const clearBtn = document.querySelector('button.clear')
 const cancelBtn = document.querySelector('button.cancel')
 const equalBtn = document.querySelector('button.equal')
+const negateBtn = document.querySelector('button.negate')
 
 let userInput
 let data = []
@@ -122,6 +123,13 @@ function onEqualBtnClick(e) {
   }
 }
 
+function onNegateBtnClick(e) {
+  if (userInput) {
+    userInput = parseFloat(userInput) * -1
+    displayToScreen(userInput)
+  }
+}
+
 /***
  * EVENT LISTENER
  */
@@ -140,3 +148,4 @@ operationBtns.forEach((operationBtn) => {
 
 cancelBtn.addEventListener('click', onCancelBtnClick)
 equalBtn.addEventListener('click', onEqualBtnClick)
+negateBtn.addEventListener('click', onNegateBtnClick)
