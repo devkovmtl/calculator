@@ -53,15 +53,18 @@ function displayToScreen(str) {
 
 function onNumericBtnClick(e) {
   let btnValue = e.target.innerText
+  if (userInput && userInput.length === 12) {
+    return
+  }
   if ((!userInput || !userInput.length) && btnValue === '0') {
     userInput = '0'
   } else if (userInput === '0') {
     userInput = ''
     userInput += btnValue
-  } else if (userInput !== '0') {
-    userInput += btnValue
-  } else {
+  } else if (!userInput && userInput !== '0') {
     userInput = btnValue
+  } else {
+    userInput += btnValue
   }
 
   displayToScreen(userInput)
@@ -71,6 +74,8 @@ function onOperandBtnClick(e) {
   // check user UserInput if there is something
   if (!userInput) {
     return
+  } else if (userInput && data.length === 0) {
+    data.push(userInput)
   }
 }
 
