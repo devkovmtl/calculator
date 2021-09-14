@@ -1,6 +1,7 @@
 const displayScreen = document.querySelector('.calc-screen')
 const numericBtns = document.querySelectorAll('button.numeric')
 const operandBtns = document.querySelectorAll('button.operand')
+const clearBTN = document.querySelector('button[data-op="clear"]')
 
 const OPERAND = [
   'equal',
@@ -14,10 +15,8 @@ const OPERAND = [
   'float',
 ]
 
-let userInput = ''
+let userInput
 const data = []
-const operations = []
-let lastData = ''
 
 function add(a, b) {
   return a + b
@@ -40,6 +39,8 @@ function divide(a, b) {
 
 function clear() {
   displayScreen.textContent = ''
+  userInput = ''
+  data = []
 }
 
 function operate(fn, a, b) {
@@ -47,49 +48,34 @@ function operate(fn, a, b) {
 }
 
 function displayToScreen(str) {
-  displayScreen.textContent = str
+  displayScreen.innerText = str
 }
 
 function onNumericBtnClick(e) {
-  userInput += e.target.name
+  let btnValue = e.target.innerText
+  if ((!userInput || !userInput.length) && btnValue === '0') {
+    userInput = ''
+  } else if (userInput) {
+    userInput += btnValue
+  } else {
+    userInput = btnValue
+  }
+
   displayToScreen(userInput)
 }
 
-function onOperandBtnClick(e) {
-  const operandName = e.target.name
-  const operandSymbol = e.target.innerHTML
-  // console.log(e.target.name)
-  // console.log(e.target.innerHTML)
+function onOperandBtnClick(e) {}
 
-  console.log(userInput)
-  data.push(userInput)
-  data.push(operandSymbol)
-  operations.push(operandName)
-  userInput = userInput + operandSymbol
-  displayToScreen(userInput)
-}
+function computeIntermediateStep() {}
 
-function computeIntermediateStep() {
-  console.log(data)
-}
+clearBTN.addEventListener('click', clear)
 
 numericBtns.forEach((numericBtn) => {
-  numericBtn.addEventListener('click', (e) => {
-    lastData = data[data.length - 1]
-    console.log(lastData)
-    onNumericBtnClick(e)
-  })
+  numericBtn.addEventListener('click', onNumericBtnClick)
 })
 
 operandBtns.forEach((operandBtn) => {
   operandBtn.addEventListener('click', (e) => {
-    lastData = data[data.length - 1]
-
-    if (operations.length === 0) {
-      onOperandBtnClick(e)
-    } else {
-      // compute step
-      computeIntermediateStep()
-    }
+    onOperandBtnClick(e)
   })
 })
