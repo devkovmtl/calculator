@@ -87,6 +87,14 @@ button:active {
   box-shadow: inset -2px -2px 4px #fff, inset 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-.operand {
+.operation,
+.equal,
+.float,
+.negate {
   color: orange;
+}
+
+.clear,
+.cancel {
+  color: red;
 }

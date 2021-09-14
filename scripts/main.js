@@ -1,19 +1,9 @@
 const displayScreen = document.querySelector('.calc-screen')
 const numericBtns = document.querySelectorAll('button.numeric')
-const operandBtns = document.querySelectorAll('button.operand')
-const clearBTN = document.querySelector('button[data-op="clear"]')
-
-const OPERAND = [
-  'equal',
-  'clear',
-  'divide',
-  'multiply',
-  'cancel',
-  'subtract',
-  'add',
-  'negate',
-  'float',
-]
+const operationBtns = document.querySelectorAll('button.operation')
+const clearBtn = document.querySelector('button.clear')
+const cancelBtn = document.querySelector('button.cancel')
+const equalBtn = document.querySelector('button.equal')
 
 let userInput
 let data = []
@@ -70,22 +60,63 @@ function onNumericBtnClick(e) {
   displayToScreen(userInput)
 }
 
-function onOperandBtnClick(e) {
-  // check user UserInput if there is something
-  if (!userInput) {
-    return
-  } else if (userInput && data.length === 0) {
-    data.push(userInput)
+function onOperationdBtnClick(e) {
+  const operationName = e.target.name
+  const operationSymbol = e.target.innerText
+  const currentVal = parseFloat(userInput)
+
+  if (data && data.length) {
+    data.push(currentVal)
+
+    const result = evaluate(data)
+    console.log(result)
+
+    data.push(result)
+    data.push(operationName)
+    userInput = ''
+    displayToScreen(userInput)
+  } else {
+    data.push(currentVal)
+    data.push(operationName)
+    userInput = ''
+    displayToScreen(userInput)
   }
 }
 
-function computeIntermediateStep() {}
+function evaluate() {
+  console.log(data)
+  const second = data.pop()
+  const operator = data.pop()
+  const first = data.pop()
+
+  switch (operator) {
+    case 'add':
+      return operate(add, first, second)
+    case 'subtract':
+      return operate(subtract, first, second)
+    case 'divide':
+      return operate(divide, first, second)
+    case 'multiply':
+      return operate(multiply, first, second)
+    default:
+      return second
+  }
+}
+
+function onCancelBtnClick() {
+  if (userInput) {
+    userInput = userInput.slice(0, userInput.length - 1)
+  }
+  // console.log(userInput)
+  // console.log(data)
+  displayToScreen(userInput)
+}
 
 /***
  * EVENT LISTENER
  */
 // Handle Clear button clean the screen and every variable holding data
-clearBTN.addEventListener('click', clear)
+clearBtn.addEventListener('click', clear)
 
 // Handle Numeric button
 numericBtns.forEach((numericBtn) => {
@@ -93,6 +124,8 @@ numericBtns.forEach((numericBtn) => {
 })
 
 // Handle math operation button
-operandBtns.forEach((operandBtn) => {
-  operandBtn.addEventListener('click', onOperandBtnClick)
+operationBtns.forEach((operationBtn) => {
+  operationBtn.addEventListener('click', onOperationdBtnClick)
 })
+
+cancelBtn.addEventListener('click', onCancelBtnClick)
