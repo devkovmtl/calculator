@@ -5,6 +5,7 @@ const clearBtn = document.querySelector('button.clear')
 const cancelBtn = document.querySelector('button.cancel')
 const equalBtn = document.querySelector('button.equal')
 const negateBtn = document.querySelector('button.negate')
+const decimalBtn = document.querySelector('button.decimal')
 
 let userInput
 let data = []
@@ -130,6 +131,12 @@ function onNegateBtnClick(e) {
   }
 }
 
+function onDecimalBtnClick(e) {
+  if (userInput && userInput.indexOf('.') === -1) {
+    userInput = userInput + '.'
+  }
+}
+
 /***
  * EVENT LISTENER
  */
@@ -149,3 +156,4 @@ operationBtns.forEach((operationBtn) => {
 cancelBtn.addEventListener('click', onCancelBtnClick)
 equalBtn.addEventListener('click', onEqualBtnClick)
 negateBtn.addEventListener('click', onNegateBtnClick)
+decimalBtn.addEventListener('click', onDecimalBtnClick)
