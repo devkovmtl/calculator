@@ -5,6 +5,8 @@ from the Odin Project\'s [curriculum]
 
 Simple Browser Calculator
 
+Project [demo]( https://devkovmtl.github.io/calculator/)
+
 ## Build with
 
 - HTML
