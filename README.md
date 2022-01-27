@@ -5,7 +5,7 @@ from the Odin Project\'s [curriculum]
 
 Simple Browser Calculator
 
-## Build
+## Build with
 
 - HTML
 - CSS
